@@ -1,0 +1,89 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: grey;
+    height: 100vh;
+}
+.head h1
+{
+    margin: 20px;
+}
+.head
+{
+    display: flex;
+    background-color: #334155;
+    color: white;
+    display: flex;
+    padding: 10px 5px;
+    border: 4px solid black;
+}
+
+.head i
+{
+    background-color: #334155;
+    color: white;
+    height: 100%;
+    width: 100px;
+    border: none;
+    align-self: center;
+    font-size: 70px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger-items
+{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 10px;
+    align-items: flex-start;
+}
+
+.hamburger-menu
+{
+    
+    width: 25%;
+    background-color: #334155;
+    margin: 0;
+    padding-top: 20px;
+    height: calc(100vh - 146px);
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+.hamburger-items li
+{
+    width: 100%;
+    cursor: pointer;
+}
+
+
+.inbox,.project
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.inbox div,.project
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.li-items
+{
+    font-size: 28px;
+    font-weight: lighter;
+}
+.li-items:hover
+{
+    background-color: grey;
+}
