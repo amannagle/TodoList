@@ -26,7 +26,12 @@ function addListenerToProjectCreate()
 
 function addProjectToDom(project)
 {
-    
+    const projectdiv = document.querySelector('div.project');
+    const new_div = document.createElement('div');
+    new_div.classList.add('project-header-div');
+    new_div.innerHTML=`<li class="project-header">${project.name}</li>
+    <button class="btn-delete-project"><i class="fa-solid fa-trash"></i></button>`;
+    projectdiv.appendChild(new_div);
 }
 
 export {interactWithDom}
