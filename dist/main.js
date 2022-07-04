@@ -1,0 +1,1 @@
+(()=>{"use strict";document.querySelector("#add-project").addEventListener("click",(function(e){e.preventDefault(),console.log("addprojectbutton was clicked")}))})();

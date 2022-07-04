@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../src/style.css">
     <title>Todo List</title>
     <script src="https://kit.fontawesome.com/27439a4ca6.js" crossorigin="anonymous"></script>
+    <script src = "main.js" defer></script>
 </head>
 <body>
     <header>
@@ -32,7 +33,11 @@
                         <li class="project-header">Bork Project</li>
                         <button class="btn-delete-project"><i class="fa-solid fa-trash"></i></button>
                     </div>
-                    <button id="add-project"><i class="fa-solid fa-plus"></i>Add Project</button>
+                    <form action="" id="add-project-form">
+                        <button id="add-project">
+                            <i class="fa-solid fa-plus"></i></button>
+                            <input type="text" placeholder="add project">
+                    </form>
                 </div>
             </ul>
         </section>
