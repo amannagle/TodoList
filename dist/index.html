@@ -17,24 +17,37 @@
         </div>
         
     </header>
-    <section class="hamburger-menu">
-        <ul class="hamburger-items">
-            <div class="inbox">
-                <li><h2>Inbox</h2></li>
-                <li class="li-items">Today's Tasks</li>
-                <li class="li-items">This Week's Tasks</li>
+    <div class="sections">
+        <section class="hamburger-menu">
+            <ul class="hamburger-items">
+                <div class="inbox">
+                    <li><h2>Inbox</h2></li>
+                    <li class="li-items">Today's Tasks</li>
+                    <li class="li-items">This Week's Tasks</li>
+                </div>
+                <div class="project">
+        
+                    <li><h2>Projects</h2></li>
+                    <div class="project-header-div">
+                        <li class="project-header">Bork Project</li>
+                        <button class="btn-delete-project"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <button id="add-project"><i class="fa-solid fa-plus"></i>Add Project</button>
+                </div>
+            </ul>
+        </section>
+        <section class="taskcontainer">
+            <div class="tasks">
+                <h2>Bork Project</h2>
+                <div class="tasks">
+                    <div class="task">
+                        <span class="custom-check"></span>
+                        <p class="taskname">woof</p>
+                    </div>
+                </div>
             </div>
-            <div class="project">
-                
-                <li><h2>Projects</h2></li>
-                <li class="li-items">Default Project</li>
-                <button id="add-project"><i class="fa-solid fa-plus"></i>Add Project</button>
-            </div>
-        </ul>
-    </section>
-    <section>
-
-    </section>
+        </section>
+    </div>
     <footer>
 
     </footer>

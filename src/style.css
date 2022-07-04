@@ -109,3 +109,68 @@ body
 {
     background: grey;
 }
+
+.sections
+{
+    display: flex;
+    background: #334155;
+}
+
+.taskcontainer
+{
+    padding: 50px;
+    color: white;
+    width: 100%;
+}
+
+.task
+{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 28px;
+    gap: 20px;
+    align-items: baseline;
+    border: 2px solid black;
+}
+
+.task i
+{
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.custom-check
+{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    outline: 3px solid black;
+    background-color: white;
+}
+
+
+
+.btn-delete-project
+{
+    display: none;
+    cursor: pointer;
+    background-color: grey;
+    color: white;
+    margin: 0;
+    padding: 0;
+    border: none;
+    margin-left: 5px;
+}
+
+.project-header:hover+button
+{
+    display: inline;
+}
+
+.project-header-div:hover
+{
+    display: flex;
+    background: grey;
+}
