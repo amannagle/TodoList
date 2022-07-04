@@ -17,8 +17,16 @@ function addListenerToProjectCreate()
     addProjectButton.addEventListener('click',function(e)
     {
         e.preventDefault();
-        console.log('addprojectbutton was clicked');
+        const name = document.querySelector('#add-project-input').value;
+        const new_project = new project(name,[]);
+        addProjectToDom(new_project);
+        document.querySelector('#add-project-form').reset();
     })
+}
+
+function addProjectToDom(project)
+{
+    
 }
 
 export {interactWithDom}
