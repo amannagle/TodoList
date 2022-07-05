@@ -1,7 +1,8 @@
 class todo
 {
-    constructor(name)
+    constructor(project,name)
     {
+        this.project=project;
         this.name=name;
     }
     setName(name)
