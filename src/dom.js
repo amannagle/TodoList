@@ -18,12 +18,19 @@ function addListenerToProjectCreate()
     {
         e.preventDefault();
         const name = document.querySelector('#add-project-input').value;
+        if(name == null || name == '')
+        return;
         const new_project = new project(name,[]);
-        addProjectToDom(new_project);
+        render_project();
         document.querySelector('#add-project-form').reset();
     })
 }
 
+function render_project()
+{
+   const length = project.allprojects.length;
+   addProjectToDom(project.allprojects[length-1]);
+}
 function addProjectToDom(project)
 {
     const projectdiv = document.querySelector('div.project');

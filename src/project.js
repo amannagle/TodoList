@@ -1,11 +1,12 @@
 class project
 {
+    static allprojects =[];
     constructor(name,todos)
     {
         this.name=name;
         this.todos=todos;
+        project.allprojects.push(this);
     }
-
     getName()
     {
         return this.name;
