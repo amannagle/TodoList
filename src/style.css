@@ -195,3 +195,73 @@ body
     display: flex;
     margin-top: -30px;
 }
+
+.task-buttons
+{
+    /* display: flex;
+    gap: 5%; */
+    margin-top: 40px;
+}
+
+#add-task
+{
+    display: inline-block;
+    padding: 24px 16px;
+    height: 80px;
+    width: 40%;
+    background: #000000;
+    border: 2px solid #1A1A1A;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 18px;
+    touch-action: manipulation;
+    transition: 0.2s all;
+}
+#add-task:active,button#cancel:active,#add-task-div-button:active
+{
+    transform: scale(0.98);
+}
+button#cancel
+{
+    display: inline-block;
+    padding: 24px 16px;
+    height: 80px;
+    width: 40%;
+    background: #FF4742;
+    border: 2px solid #FF4742;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 18px;
+    touch-action: manipulation;
+    transition: 0.2s all;
+}
+
+#add-task-div-button
+{
+    width: 100%;
+    padding: 20px;
+    background: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    text-align: left;
+    transition: 0.2s all;
+}
+
+#add-task-div-button:hover
+{
+    background: grey;
+}
+#add-task-div-button i
+{
+    margin-right: 10px;
+}
+.task-buttons input[type="text"]
+{
+    display: block;
+    padding: 20px;
+    width: 76%;
+}
