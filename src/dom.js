@@ -1,11 +1,16 @@
 import { todo } from "./todos";
 import { project } from "./project";
 
-const default_project = new project('Inbox',[]);
+const default_project = new project('Default',[]);
+const todo1 = new todo(default_project,'funtask');
+const todo2 = new todo(default_project,'notsofuntask');
+default_project.addTodo(todo1);
+default_project.addTodo(todo2);
 let current_project = default_project;
 function interactWithDom()
 {
     addListenersToElements();
+    render_task(default_project);
 }
 
 function addListenersToElements()
@@ -13,6 +18,24 @@ function addListenersToElements()
     addListenerToProjectCreate();
     addListenerToAddTasksDiv();
     addListenerToAddTasksAndCancel();
+    addListenerToProjectHeaders();
+}
+function addListenerToProjectHeaders()
+{
+    const projectdiv = document.querySelector('div.project');
+    projectdiv.addEventListener('click' ,function(e)
+    {
+        if(e.target.tagName.toLowerCase() == 'li')
+        {
+            const projectname = e.target.textContent;
+            const project_obj = project.findProject(projectname);
+            if(project_obj != undefined)
+            {
+                render_task(project_obj)
+            }
+        }
+
+    })   
 }
 function addListenerToAddTasksDiv()
 {
@@ -52,25 +75,41 @@ function addListenerToProjectCreate()
         if(name == null || name == '')
         return;
         const new_project = new project(name,[]);
-        render_project();
+        render_projects();
         document.querySelector('#add-project-form').reset();
     })
 }
-function render_tasks()
+function render_task(project_obj)
 {
-
-}
-function render_project()
+    const tasks_div = document.querySelector('.tasks');
+    tasks_div.innerHTML=`<h2>${project_obj.name}</h2>`
+    project_obj.todos.forEach((todo)=>{
+        addtodoToDom(todo,tasks_div)
+    })
+}  
+function addtodoToDom(todo,parentdiv)
 {
-   const length = project.allprojects.length;
-   addProjectToDom(project.allprojects[length-1]);
+    const task_div = document.createElement('div');
+    task_div.classList.add('task');
+    task_div.innerHTML=`<span class="custom-check"></span><p class="taskname">${todo.name}</p></div>`
+    parentdiv.appendChild(task_div);
 }
-function addProjectToDom(project)
+function render_projects()
+{
+    const projectdiv = document.querySelector('div.project');
+    projectdiv.innerHTML="<li><h2>Projects</h2></li>";
+   project.allprojects.forEach(project=>{
+    
+        addProjectToDom(project);
+       
+   })
+}
+function addProjectToDom(newproject)
 {
     const projectdiv = document.querySelector('div.project');
     const new_div = document.createElement('div');
     new_div.classList.add('project-header-div');
-    new_div.innerHTML=`<li class="project-header">${project.name}</li>
+    new_div.innerHTML=`<li class="project-header">${newproject.name}</li>
     <button class="btn-delete-project"><i class="fa-solid fa-trash"></i></button>`;
     projectdiv.appendChild(new_div);
 }

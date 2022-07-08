@@ -1,11 +1,16 @@
 class project
 {
     static allprojects =[];
+    display='false';
     constructor(name,todos)
     {
         this.name=name;
         this.todos=todos;
         project.allprojects.push(this);
+    }
+    static findProject(projectname)
+    {
+        return project.allprojects.find(element=>element.name == projectname);
     }
     getName()
     {
