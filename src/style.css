@@ -108,7 +108,10 @@ body
     display: flex;
     gap: 10px;
 }
-
+#add-project-input
+{
+    color: white;
+}
 #add-project:hover
 {
     background: grey;

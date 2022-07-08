@@ -22,8 +22,24 @@ function addListenersToElements()
     addListenerToAddTasksAndCancel();
     addListenerToProjectHeaders();
     addListenerToProjectDelete();
+    addListenerToTaskDelete();
 }
-
+function addListenerToTaskDelete()
+{
+    const tasks_div = document.querySelector('.tasks');
+    tasks_div.addEventListener('click',function(e)
+    {
+        if(e.target.tagName.toLowerCase() == 'span')
+        {
+            const task_name = e.target.parentNode.textContent;
+            let todo_object =todo.findtodo(task_name);
+            const project_obj = todo_object.project;
+            const index = project_obj.todos.indexOf(project_obj);
+            project_obj.todos.splice(index,1);
+            render_task(project_obj); 
+        }
+    })
+}
 function addListenerToProjectDelete()
 {
     const projectdiv = document.querySelector('div.project');
@@ -91,6 +107,7 @@ function addTask(e)
     current_project.addTodo(new_task);
     render_task(current_project);
     document.querySelector('#add-task-form').reset();
+    cancelTask();
 }
 
 function cancelTask()
@@ -111,6 +128,8 @@ function addListenerToProjectCreate()
         return;
         const new_project = new project(name,[]);
         render_projects();
+        current_project=new_project;
+        render_task(new_project);
         document.querySelector('#add-project-form').reset();
     })
 }
