@@ -137,7 +137,10 @@ body
     align-items: baseline;
     border: 2px solid black;
 }
-
+.tasks h2
+{
+    text-align: center;
+}
 .task i
 {
     margin-right: 10px;
@@ -211,7 +214,7 @@ body
     display: inline-block;
     padding: 24px 16px;
     height: 80px;
-    width: 40%;
+    width: 35%;
     background: #000000;
     border: 2px solid #1A1A1A;
     color: white;
@@ -230,7 +233,7 @@ button#cancel
     display: inline-block;
     padding: 24px 16px;
     height: 80px;
-    width: 40%;
+    width: 35%;
     background: #FF4742;
     border: 2px solid #FF4742;
     color: white;

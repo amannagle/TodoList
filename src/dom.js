@@ -9,8 +9,10 @@ default_project.addTodo(todo2);
 let current_project = default_project;
 function interactWithDom()
 {
-    addListenersToElements();
+    
+    render_projects();
     render_task(default_project);
+    addListenersToElements();
 }
 
 function addListenersToElements()
@@ -19,6 +21,34 @@ function addListenersToElements()
     addListenerToAddTasksDiv();
     addListenerToAddTasksAndCancel();
     addListenerToProjectHeaders();
+    addListenerToProjectDelete();
+}
+
+function addListenerToProjectDelete()
+{
+    const projectdiv = document.querySelector('div.project');
+    projectdiv.addEventListener('click',function(e)
+    {
+        if(e.target.tagName.toLowerCase() == 'i')
+        {
+            const project_name = e.target.parentNode.parentNode.textContent.toString().trim();
+            let project_obj = project.findProject(project_name);
+            const index = project.allprojects.indexOf(project_obj);
+            if(index == 0)
+            {
+                return;
+            }
+            project.allprojects.splice(index,1);
+            if(current_project == project_obj)
+            {
+                current_project=project.allprojects[0];
+            }
+            project_obj=null;
+            render_projects();
+            render_task(current_project);
+        }
+    })
+
 }
 function addListenerToProjectHeaders()
 {
@@ -31,6 +61,7 @@ function addListenerToProjectHeaders()
             const project_obj = project.findProject(projectname);
             if(project_obj != undefined)
             {
+                current_project=project_obj;
                 render_task(project_obj)
             }
         }
@@ -54,8 +85,12 @@ function addTask(e)
 {
     e.preventDefault();
     const task_name = document.querySelector('#add-task-input').value;
+    if (task_name == '' || task_name == null)
+    return;
     const new_task = new todo(current_project,task_name);
     current_project.addTodo(new_task);
+    render_task(current_project);
+    document.querySelector('#add-task-form').reset();
 }
 
 function cancelTask()
