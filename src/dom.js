@@ -140,6 +140,13 @@ function addListenerToProjectCreate()
         const name = document.querySelector('#add-project-input').value;
         if(name == null || name == '')
         return;
+        if(project.findProject(name))
+        {
+            alert('choose different name');
+            document.querySelector('#add-project-form').reset();
+            return;
+        }
+
         const new_project = new project(name,[]);
         updateLocalStorage();
         render_projects();
