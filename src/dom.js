@@ -1,17 +1,23 @@
 import { todo } from "./todos";
 import { project } from "./project";
-
-const default_project = new project('Default',[]);
-const todo1 = new todo(default_project,'funtask');
-const todo2 = new todo(default_project,'notsofuntask');
-default_project.addTodo(todo1);
-default_project.addTodo(todo2);
-let current_project = default_project;
+let current_project;
+function createDefault()
+{
+let default_project = new project('default',[]);
+ current_project = default_project;
+}
 function interactWithDom()
 {
-    
+    project.getProjectsFromLocalStorage();
+    todo.getTasksFromLocalStorage();
+    if(project.allprojects.length == 0)
+     {
+         createDefault();
+     }
+    else
+    current_project = project.allprojects[0];
     render_projects();
-    render_task(default_project);
+    render_task(current_project);
     addListenersToElements();
 }
 
@@ -23,6 +29,11 @@ function addListenersToElements()
     addListenerToProjectHeaders();
     addListenerToProjectDelete();
     addListenerToTaskDelete();
+    
+}
+function updateLocalStorage()
+{
+    localStorage.setItem('items', JSON.stringify(project.allprojects));
 }
 function addListenerToTaskDelete()
 {
@@ -33,10 +44,11 @@ function addListenerToTaskDelete()
         {
             const task_name = e.target.parentNode.textContent;
             let todo_object =todo.findtodo(task_name);
-            const project_obj = todo_object.project;
+            const project_obj = current_project;
             const index = project_obj.todos.indexOf(project_obj);
             project_obj.todos.splice(index,1);
             render_task(project_obj); 
+            updateLocalStorage();
         }
     })
 }
@@ -60,6 +72,7 @@ function addListenerToProjectDelete()
                 current_project=project.allprojects[0];
             }
             project_obj=null;
+            updateLocalStorage();
             render_projects();
             render_task(current_project);
         }
@@ -103,9 +116,10 @@ function addTask(e)
     const task_name = document.querySelector('#add-task-input').value;
     if (task_name == '' || task_name == null)
     return;
-    const new_task = new todo(current_project,task_name);
-    current_project.addTodo(new_task);
+    const new_task = new todo(task_name);
+    current_project.todos.push(new_task);
     render_task(current_project);
+    updateLocalStorage();
     document.querySelector('#add-task-form').reset();
     cancelTask();
 }
@@ -127,6 +141,7 @@ function addListenerToProjectCreate()
         if(name == null || name == '')
         return;
         const new_project = new project(name,[]);
+        updateLocalStorage();
         render_projects();
         current_project=new_project;
         render_task(new_project);
@@ -152,7 +167,7 @@ function render_projects()
 {
     const projectdiv = document.querySelector('div.project');
     projectdiv.innerHTML="<li><h2>Projects</h2></li>";
-   project.allprojects.forEach(project=>{
+    project.allprojects.forEach(project=>{
     
         addProjectToDom(project);
        

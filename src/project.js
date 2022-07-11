@@ -1,12 +1,15 @@
 class project
 {
-    static allprojects =[];
-    display='false';
+    static allprojects = [];
     constructor(name,todos)
     {
         this.name=name;
         this.todos=todos;
         project.allprojects.push(this);
+    }
+    static getProjectsFromLocalStorage()
+    {
+        project.allprojects = JSON.parse(localStorage.getItem("items") || "[]");
     }
     static findProject(projectname)
     {
