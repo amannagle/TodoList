@@ -116,6 +116,12 @@ function addTask(e)
     const task_name = document.querySelector('#add-task-input').value;
     if (task_name == '' || task_name == null)
     return;
+    if(current_project.todos.find(element=>element.name == task_name))
+    {
+        alert('please add unique tasks!');
+        document.querySelector('#add-task-form').reset();
+        return;
+    }
     const new_task = new todo(task_name);
     current_project.todos.push(new_task);
     render_task(current_project);
